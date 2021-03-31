@@ -101,7 +101,34 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 # install a new package
 install.packages("RStoolbox")
 
+# Multitemporal test
+p224r63_1988 <- brick("p224r63_1988_masked.grd")
+p224r63_1988
+plot(p224r63_1988)
 
+# Landsat bands
+# B1: Blue
+# B2: Green
+# B3: Red
+# B4: near infrared
+# B5: medium infrared
+# B6: thermal infrared
 
+plot(p224r63_1988)
+plotRGB(p224r63_1988,r=3,g=2,b=1,stretch="Lin")
+plotRGB(p224r63_1988,r=4,g=3,b=2,stretch="Lin")
 
+# plot both images together (2011 - 1988) in order to see the differences
+par(mfrow=c(2,1))
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988,r=4,g=3,b=2,stretch="Lin")
+
+# hist and linear confront
+pdf("multitemp")
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988,r=4,g=3,b=2,stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Hist")
+plotRGB(p224r63_1988,r=4,g=3,b=2,stretch="Hist")
+dev.off()
 
