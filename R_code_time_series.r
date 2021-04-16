@@ -72,5 +72,3 @@ levelplot(melt_amount, col.regions=clb)
 
 
 
-
-
