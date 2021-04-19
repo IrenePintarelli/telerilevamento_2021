@@ -35,7 +35,6 @@ import
 
 # create a block of files 
 TGr<-stack(import)
-plot(TGr)TGr<-stack(import)
 plot(TGr)
 
 # use RGB
