@@ -34,3 +34,37 @@ sun <- brick("sun.png")
 # unservised classification of the image 
 sun <- unsuperClass(sun, nClasses=3)
 plot(sun$map)
+
+# Download Solar Orbiter data and proceed further
+# Grand Canyon: https://landsat.visibleearth.nasa.gov/view.php?id=80948
+
+# load the library I will need
+library(raster)
+library(RStoolbox)
+
+# load the working directory
+setwd("C:/lab/")
+
+# use the function brick to load the image
+gc<-brick("dolansprings_oli_2013088_canyon_lrg.jpg")
+# visualize the image in RGB (visible light spectrum RED GREEN BLUE)
+plotRGB(gc,r=1,g=2,b=3, stretch="Lin")
+plotRGB(gc,r=1,g=2,b=3, stretch="Hist")
+# to see the differences between the version "Hist" and "Lin" I visualize them together 
+par(mfrow=c(2,1))
+plotRGB(gc,r=1,g=2,b=3, stretch="Lin")
+plotRGB(gc,r=1,g=2,b=3, stretch="Hist")
+
+# unservised classification
+gcc2 <- unsuperClass(gc,nClasses=2)
+plot(gcc2$map)
+
+# visualize the original imagine and the processed one
+par(mfrow=c(2,1))
+plotRGB(gc,r=1,g=2,b=3, stretch="Lin")
+plot(gcc2$map)
+# add more classes
+gcc4 <- unsuperClass(gc, nClasses=4)
+plot(gcc4$map)
+
+
