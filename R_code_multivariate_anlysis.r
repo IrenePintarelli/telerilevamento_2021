@@ -16,5 +16,30 @@ p224r63_2011
 plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
 plot(p224r63_2011$B2_sre,p224r63_2011$B1_sre,col="red", pch=19, cex=2)
 
-# all the variables of our dataset visualized together
+# all the variables of our dataset visualized together, to see the correlation between the bands
 pairs(p224r63_2011)
+
+# aggregate the cells, this function aggregates the pixels (resampling)
+# it depends how much we want the image bigger or smaller
+p224r63_2011res <- aggregate(p224r63_2011,fact=10)
+# visualizing the info regarding the image I check the variation in the resolution
+p224r63_2011res
+
+# in  order to see the differences between the real image and the processed one, I create a window with two rows and plot the images together
+par(mfrow=c(2,1))
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin")
+plotRGB(p224r63_2011res, r=4, g=3, b=2, stretch="lin")
+
+# PCA analysis
+p224r63_2011res_pca <- rasterPCA(p224r63_2011res)
+
+# produce result summaries of the results of various model fitting functions
+summary(p224r63_2011res_pca$model)
+# to visualize the model I use the function plot
+plot(p224r63_2011res_pca$map)
+
+# visualize 3 components
+plotRGB(p224r63_2011res_pca$map, r=1, g=2, b=3, stretch="lin")
+
+
+
