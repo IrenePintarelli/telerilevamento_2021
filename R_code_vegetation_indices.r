@@ -67,3 +67,19 @@ dev.off()
 cld <- colorRampPalette(c('blue','white','red'))(100) 
 plot(difndvi, col=cld)
 
+# install.packages for worldwide
+istall.packages("rasterdiv")
+library (rasterdiv)
+
+# worldwide visualization
+plot(copNDVI)
+
+# install.packages 
+install.packages("rasterVis")
+library(rasterVis)
+
+# worldwide visualization, how the world breaths, maximum values in the forests, minimum in the deserts and areas covered by ice
+levelplot(copNDVI)
+
+
+
