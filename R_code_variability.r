@@ -42,6 +42,10 @@ plot(ndvimean3)
 clsd <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
 plot(ndvimean3,col=clsd)
 
+sentpca <- rasterPCA(sent)
+plot(sentpca$map)
+summary(sentpca$model)
+ 
 
 
 
