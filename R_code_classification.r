@@ -7,11 +7,11 @@ setwd("C:/lab/")
 # load the image in R using the function "brick" contained in the library "raster"
 # first I insert the library I need
 library(raster)
-# the image is a a data package 
+# the image is a data package 
 brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 so <- brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 
-# in order to visualize the image I use the function "plorRGB" to see all the levels
+# in order to visualize the image I use the function "plotRGB" to see all the levels
 plotRGB(so, 1,2,3, stretch="lin")
 
 # I insert the library "RStoolbox"
