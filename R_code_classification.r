@@ -12,12 +12,15 @@ brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 so <- brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 
 # in order to visualize the image I use the function "plotRGB" to see all the levels
+# 1 = NIR
+# 2 = RED
+# 3 = BLUE
 plotRGB(so, 1,2,3, stretch="lin")
 
 # I insert the library "RStoolbox"
 library(RStoolbox)
 
-# unsupervised classification
+# unsupervised classification, the different pixels are gathered in classes according to their spectral caratteristics
 soc <- unsuperClass(so, nClasses=3)
 # plot the image, using "unsuperClass" the result can be different it depends on how the software process it
 plot(soc$map)
@@ -31,7 +34,7 @@ set.seed(42)
 
 # dowload image from the link https://www.esa.int/ESA_Multimedia/Missions/Solar_Orbiter/(result_type)/images
 sun <- brick("sun.png")
-# unservised classification of the image 
+# unsupervised classification of the image 
 sun <- unsuperClass(sun, nClasses=3)
 plot(sun$map)
 
@@ -50,12 +53,12 @@ gc<-brick("dolansprings_oli_2013088_canyon_lrg.jpg")
 # visualize the image in RGB (visible light spectrum RED GREEN BLUE)
 plotRGB(gc,r=1,g=2,b=3, stretch="Lin")
 plotRGB(gc,r=1,g=2,b=3, stretch="Hist")
-# to see the differences between the version "Hist" and "Lin" I visualize them together 
+# to see the differences between the version "Hist" and "Lin" I visualize them together building an empty window with 2 rows and 1 column
 par(mfrow=c(2,1))
 plotRGB(gc,r=1,g=2,b=3, stretch="Lin")
 plotRGB(gc,r=1,g=2,b=3, stretch="Hist")
 
-# unservised classification
+# unsupervised classification
 gcc2 <- unsuperClass(gc,nClasses=2)
 plot(gcc2$map)
 
