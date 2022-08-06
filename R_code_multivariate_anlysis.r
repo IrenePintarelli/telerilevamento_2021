@@ -30,7 +30,7 @@ par(mfrow=c(2,1))
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin")
 plotRGB(p224r63_2011res, r=4, g=3, b=2, stretch="lin")
 
-# PCA analysis
+# PCA analysis = Principal Component Analysis, it shows which layers has the majority of info, the proportion of variance and standard deviation
 p224r63_2011res_pca <- rasterPCA(p224r63_2011res)
 
 # produce result summaries of the results of various model fitting functions
@@ -38,7 +38,7 @@ summary(p224r63_2011res_pca$model)
 # to visualize the model I use the function plot
 plot(p224r63_2011res_pca$map)
 
-# visualize 3 components
+# visualize 3 components toghether, I assigned to the band of red the firs band and the second to the green one and the third one to the blue
 plotRGB(p224r63_2011res_pca$map, r=1, g=2, b=3, stretch="lin")
 
 
