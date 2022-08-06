@@ -2,10 +2,15 @@
 
 # install.packages("raster")
 
+#set the working directory as first
 setwd("C:/lab/")
+# load the library raster for Data Analysis and Modelling
 library(raster)
+# use the function brick contained in raster to import the image
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
+# check the info contained
 p224r63_2011
+# plot the image to see the different layers
 plot(p224r63_2011)
 
 # colour change
@@ -81,6 +86,7 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
 
+# create a pdf
 pdf("primo_pdf_r")
 par(mfrow=c(2,2))
 plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
@@ -89,6 +95,7 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
 dev.off()
 
+# see the differnces between the images when I change the stretch
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 
