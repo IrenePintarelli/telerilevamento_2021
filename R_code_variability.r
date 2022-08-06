@@ -16,7 +16,7 @@ sent <- brick("sentinel.png")
 plotRGB(sent)
 plotRGB(sent,r=2,g=1,b=3,stretch="lin")
 
-# associate the band to the image
+# associate the band to the plot
 nir <- sent$sentinel.1
 red <- sent$sentinel.2
 green <- sent$sentinel.3
@@ -42,12 +42,16 @@ plot(ndvimean3)
 clsd <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
 plot(ndvimean3,col=clsd)
 
-# PCA
+# PCA = Principal Component Analysis 
+# using this function, observing the proportion variance I see which component (band, layer) contains the majority of infos
 sentpca <- rasterPCA(sent)
 plot(sentpca$map)
 summary(sentpca$model)
  
 pc1 <- sentpca$map$PC1
+
+#using the function focal I can analyse where there is the highest variability, considering the standard deviation
+# for this function I need to select the dimension of the matrix which runs over the image making the calculation
 focal(pc1, w=matrix(1/25, nrow=5, ncol=5),fun=sd)
 pc1sd5 <- focal(pc1, w=matrix(1/25, nrow=5, ncol=5),fun=sd)
 plot(pc1sd5)
