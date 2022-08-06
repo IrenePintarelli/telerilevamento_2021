@@ -32,7 +32,8 @@ plot(dvi1,col=cl)
 # if I want to hide a title
 plot(dvi1,col=cl,main="DVI at time 1")
 
-# different vegetatio index 2
+# different vegetation index 2: calculate the difference between the band NIR and band RED, NIR is reflected by the vegetation which adsorbs red
+# red is used for photosynthesis so the less is reflected the more vegetation there is
 dvi2 <- defor2$defor2.1 - defor2$defor2.2
 # use plot function to visualize the image
 plot(dvi2)
@@ -43,13 +44,14 @@ plot(dvi2,col=cl)
 # if I want to hide a title
 plot(dvi2,col=cl,main="DVI at time 2")
 
-# analysis of different vegetatio index in time
+# analysis of different vegetation index in time
+# in this way I can see in which areas I had the bigger changes in vegetation
 difdvi <- dvi1 - dvi2
 # change colours
 cld <- colorRampPalette(c('blue','white','red'))(100)
 plot(difdvi,col=cld)
 
-# ndvi
+# ndvi, another vegetation index useful to make comparison
 # (NIR - RED) / (NIR + RED)
 ndvi1 <- (defor1$defor1.1 - defor1$defor1.2) / (defor1$defor1.1 + defor1$defor1.2)
 plot(ndvi1,col=cl)
