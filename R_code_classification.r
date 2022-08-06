@@ -8,6 +8,7 @@ setwd("C:/lab/")
 # first I insert the library I need
 library(raster)
 # the image is a data package 
+# I load it using the brick function
 brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 so <- brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 
@@ -18,6 +19,7 @@ so <- brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 plotRGB(so, 1,2,3, stretch="lin")
 
 # I insert the library "RStoolbox"
+# install.packages("RStoolbox") if I haven't downloaded it yet
 library(RStoolbox)
 
 # unsupervised classification, the different pixels are gathered in classes according to their spectral caratteristics
@@ -41,6 +43,9 @@ plot(sun$map)
 # Download Solar Orbiter data and proceed further
 # Grand Canyon: https://landsat.visibleearth.nasa.gov/view.php?id=80948
 
+
+############################ Dolan Springs ###############################
+
 # load the library I will need
 library(raster)
 library(RStoolbox)
@@ -58,7 +63,7 @@ par(mfrow=c(2,1))
 plotRGB(gc,r=1,g=2,b=3, stretch="Lin")
 plotRGB(gc,r=1,g=2,b=3, stretch="Hist")
 
-# unsupervised classification
+# unsupervised classification, create 2 classes for the cells
 gcc2 <- unsuperClass(gc,nClasses=2)
 plot(gcc2$map)
 
