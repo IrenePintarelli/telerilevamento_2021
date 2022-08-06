@@ -7,14 +7,18 @@ setwd("C:/lab/")
 library(raster)
 library(RStoolbox)
 
-# install a new package
+# install new packages to create graphics and plot them together
 install.packages("ggplot2")
 library(ggplot2)
+install.packages("patchwork")
+library(patchwork)
 
-# load the images of the amazon
+# load the images of the amazon forest
 defor1 <- brick("defor1.jpg")
+# plot the image with the bands all together 
 plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 
+# do the same with the second image
 defor2 <- brick("defor2.jpg")
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
@@ -24,18 +28,15 @@ plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
 # or
 
-par(mfrow=c(2,1))
-plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
-plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
-
 defor1 <- brick("defor1.jpg")
-plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
-ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
+def1 <- ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
 
 
 defor2 <- brick("defor2.jpg")
-plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
-ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
+def2 <- ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
+#to plot them together
+def1+def2
 
 # install a new package
 install.packages("gridExtra")
@@ -47,15 +48,18 @@ p2 <- ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
 grid.arrange(p1, p2, nrow=2)
 
 # unsupervised classification
+# create a classification of the pixels according to their spectral characteristics
+# 2 classes
 d1c <- unsuperClass(defor1, nClasses=2)
 plot(d1c$map)
 
-# set.seed() will allow to attain the same result
+# set.seed() will allow to obtain the same result
 
 d2c <- unsuperClass(defor2, nClasses=2)
 plot(d2c$map)
 
 # classes frequencies in the resulted map 
+# it shows the amount of cells for each class I created
 freq(d1c$map)
 # value  count
 # [1,]     1 307162
@@ -83,10 +87,11 @@ prop2
 # prop fields: 0.4769291
 
 # build a dataframe
+# first create the columns as vectors
 cover <- c("Forest","Agriculture")
 percent_1992 <- c(89.83, 10.16)
 percent_2006 <- c(52.06, 47.93)
- 
+# use the function data.frame
 percentages <- data.frame(cover, percent_1992, percent_2006)
 percentages
 
