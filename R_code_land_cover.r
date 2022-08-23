@@ -22,6 +22,8 @@ plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 defor2 <- brick("defor2.jpg")
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
+# plot them togheter to analyse the differences
+# create a window with one row and two columns to visualize one next to the other
 par(mfrow=c(1,2))
 plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
@@ -35,7 +37,8 @@ def1 <- ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
 defor2 <- brick("defor2.jpg")
 def2 <- ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
-#to plot them together
+# to plot them together
+# I need to load the library patchwork in order to use this function
 def1+def2
 
 # install a new package
